@@ -1,0 +1,115 @@
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f8fb;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container styling */
+#quizForm {
+    max-width: 600px;
+    width: 100%;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Question container */
+.question {
+    display: none;
+    margin-bottom: 20px;
+}
+
+.question.active {
+    display: block;
+}
+
+/* Input field styling */
+input[type="text"] {
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: all 0.3s;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+/* Navigation and submit buttons */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 5px;
+}
+
+#prevButton, #nextButton, #submitButton {
+    width: 100px;
+    margin: 10px auto;
+}
+
+#prevButton {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+#prevButton:hover {
+    background-color: #5a6268;
+}
+
+#nextButton {
+    background-color: #007bff;
+    color: #fff;
+}
+
+#nextButton:hover {
+    background-color: #0056b3;
+}
+
+#submitButton {
+    background-color: #28a745;
+    color: #fff;
+    display: none;
+}
+
+#submitButton:hover {
+    background-color: #218838;
+}
+
+/* Result styling */
+#result {
+    font-size: 18px;
+    font-weight: bold;
+    color: #28a745;
+    margin-top: 20px;
+}

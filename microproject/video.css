@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Video container with responsive centering */
+.video-container {
+    position: relative;
+    width: 80%; /* Adjust width as needed */
+    max-width: 560px; /* Maximum width for larger screens */
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    margin: auto; /* Center horizontally */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Set width to 100% for responsiveness */
+    height: 70%; /* Set height to 70% of container */
+}
+
+/* Positioning navigation buttons at the bottom of the video container */
+.navigation {
+    position: absolute;
+    bottom: 10px; /* Position near the bottom of the video */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+
+.back-button,
+.next-button {
+    padding: 8px 15px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #0073e6;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover,
+.next-button:hover {
+    background-color: #005bb5;
+}

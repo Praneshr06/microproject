@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Video Chat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    video {
+      width: 45%;
+      border: 1px solid #ddd;
+      margin: 10px;
+      border-radius: 8px;
+    }
+    #controls {
+      margin-top: 15px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Video Chat</h1>
+
+<video id="localVideo" autoplay playsinline muted></video>
+<video id="remoteVideo" autoplay playsinline></video>
+
+<div id="controls">
+  <button id="startButton">Start</button>
+  <button id="callButton" disabled>Call</button>
+  <button id="hangupButton" disabled>Hang Up</button>
+</div>
+
+<script>
+  let localStream;
+  let localPeerConnection;
+  let remotePeerConnection;
+
+  const startButton = document.getElementById('startButton');
+  const callButton = document.getElementById('callButton');
+  const hangupButton = document.getElementById('hangupButton');
+  const localVideo = document.getElementById('localVideo');
+  const remoteVideo = document.getElementById('remoteVideo');
+
+  startButton.onclick = async () => {
+    try {
+      localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      localVideo.srcObject = localStream;
+      callButton.disabled = false;
+      startButton.disabled = true;
+    } catch (error) {
+      console.error('Error accessing media devices.', error);
+    }
+  };
+
+  callButton.onclick = async () => {
+    callButton.disabled = true;
+    hangupButton.disabled = false;
+
+    localPeerConnection = new RTCPeerConnection();
+    remotePeerConnection = new RTCPeerConnection();
+
+    localPeerConnection.onicecandidate = e => {
+      if (e.candidate) {
+        remotePeerConnection.addIceCandidate(e.candidate);
+      }
+    };
+    remotePeerConnection.onicecandidate = e => {
+      if (e.candidate) {
+        localPeerConnection.addIceCandidate(e.candidate);
+      }
+    };
+    remotePeerConnection.ontrack = event => {
+      remoteVideo.srcObject = event.streams[0];
+    };
+
+    localStream.getTracks().forEach(track => {
+      localPeerConnection.addTrack(track, localStream);
+    });
+
+    const offer = await localPeerConnection.createOffer();
+    await localPeerConnection.setLocalDescription(offer);
+    await remotePeerConnection.setRemoteDescription(offer);
+
+    const answer = await remotePeerConnection.createAnswer();
+    await remotePeerConnection.setLocalDescription(answer);
+    await localPeerConnection.setRemoteDescription(answer);
+  };
+
+  hangupButton.onclick = () => {
+    localPeerConnection.close();
+    remotePeerConnection.close();
+    callButton.disabled = false;
+    hangupButton.disabled = true;
+  };
+</script>
+
+</body>
+</html>

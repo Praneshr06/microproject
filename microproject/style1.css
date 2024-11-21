@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e2dada;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 250px;
+    background-color: rgb(241, 240, 240);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.subheading {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.lesson {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.play-icon {
+    font-size: 1em;
+    color: #333;
+    padding: 4px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.lesson a {
+    text-decoration: none;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.lesson a:hover {
+    color: #0073e6;
+}
